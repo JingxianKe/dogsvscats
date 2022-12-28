@@ -2,8 +2,8 @@
 import dogs_vs_cats_config as config
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-import AspectAwarePreprocessor
-import HDF5DatasetWriter
+from aspectawarepreprocessor import AspectAwarePreprocessor
+from hdf5datasetwriter import HDF5DatasetWriter
 from imutils import paths
 import numpy as np
 import progressbar
