@@ -1,5 +1,5 @@
 # define the paths to the images directory
-IMAGES_PATH = "../datasets/train"
+IMAGES_PATH = "../datasets/kaggle_dogs_vs_cats/train"
 
 # since we do not have validation data or access to the testing
 # labels we need to take a number of images from the training
