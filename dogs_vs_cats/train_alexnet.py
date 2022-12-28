@@ -13,7 +13,7 @@ from trainingmonitor import TrainingMonitor
 from hdf5datasetgenerator import HDF5DatasetGenerator
 from alexnet import AlexNet
 from keras.preprocessing.image import ImageDataGenerator
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 import json
 import os
 
