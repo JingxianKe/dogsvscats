@@ -68,11 +68,11 @@ callbacks = [TrainingMonitor(path)]
 # train the network
 model.fit_generator(
 	trainGen.generator(),
-	steps_per_epoch=trainGen.numImages // 128,
+	steps_per_epoch=trainGen.numImages // 64,
 	validation_data=valGen.generator(),
-	validation_steps=valGen.numImages // 128,
+	validation_steps=valGen.numImages // 64,
 	epochs=75,
-	max_queue_size=128 * 2,
+	max_queue_size=16,
 	callbacks=callbacks, verbose=1)
 
 # save the model to file
