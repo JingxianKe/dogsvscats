@@ -1,8 +1,8 @@
 # import the necessary packages
-from keras.applications import ResNet50
-from keras.applications import imagenet_utils
-from keras.preprocessing.image import img_to_array
-from keras.preprocessing.image import load_img
+from tensorflow.keras.applications import ResNet50
+from tensorflow.keras.applications import imagenet_utils
+from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.preprocessing.image import load_img
 from sklearn.preprocessing import LabelEncoder
 from hdf5datasetwriter import HDF5DatasetWriter
 from imutils import paths
