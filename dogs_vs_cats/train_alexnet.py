@@ -13,9 +13,17 @@ from trainingmonitor import TrainingMonitor
 from hdf5datasetgenerator import HDF5DatasetGenerator
 from alexnet import AlexNet
 from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.models import load_model
 from tensorflow.keras.optimizers import Adam
+import argparse
 import json
 import os
+
+# construct the argument parse and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-m", "--model", type=str,
+				help="path to *specific* model checkpoint to load")
+args = vars(ap.parse_args())
 
 # construct the training image generator for data augmentation
 aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15,
@@ -37,13 +45,20 @@ trainGen = HDF5DatasetGenerator(config.TRAIN_HDF5, 128, aug=aug,
 valGen = HDF5DatasetGenerator(config.VAL_HDF5, 128,
 							  preprocessors=[sp, mp, iap], classes=2)
 
-# initialize the optimizer
-print("[INFO] compiling model...")
-opt = Adam(lr=1e-3)
-model = AlexNet.build(width=227, height=227, depth=3,
-					  classes=2, reg=0.0002)
-model.compile(loss="binary_crossentropy", optimizer=opt,
-			  metrics=["accuracy"])
+
+# if there is no specific model checkpoint supplied, then initialize the network and compile the model
+if args["model"] is None:
+	print("[INFO] compiling model...")
+	opt = Adam(lr=1e-3)
+	model = AlexNet.build(width=227, height=227, depth=3,
+						  classes=2, reg=0.0002)
+	model.compile(loss="binary_crossentropy", optimizer=opt,
+				  metrics=["accuracy"])
+
+# otherwise, load the checkpoint from disk
+else:
+	print("[INFO] loading {}...".format(args["model"]))
+	model = load_model(args["model"])
 
 # construct the set of callbacks
 path = os.path.sep.join([config.OUTPUT_PATH, "{}.png".format(
