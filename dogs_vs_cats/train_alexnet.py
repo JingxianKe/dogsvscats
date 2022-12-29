@@ -41,9 +41,9 @@ mp = MeanPreprocessor(means["R"], means["G"], means["B"])
 iap = ImageToArrayPreprocessor()
 
 # initialize the training and validation dataset generators
-trainGen = HDF5DatasetGenerator(config.TRAIN_HDF5, 128, aug=aug,
+trainGen = HDF5DatasetGenerator(config.TRAIN_HDF5, 64, aug=aug,
 								preprocessors=[pp, mp, iap], classes=2)
-valGen = HDF5DatasetGenerator(config.VAL_HDF5, 128,
+valGen = HDF5DatasetGenerator(config.VAL_HDF5, 64,
 							  preprocessors=[sp, mp, iap], classes=2)
 
 # # clean cache
