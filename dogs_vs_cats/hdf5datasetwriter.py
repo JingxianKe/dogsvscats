@@ -8,9 +8,10 @@ class HDF5DatasetWriter:
         # check to see if the output path exists, and if so, raise
         # an exception
         if os.path.exists(outputPath):
-            raise ValueError("The supplied ‘outputPath‘ already "
-                             "exists and cannot be overwritten. Manually delete "
-                             "the file before continuing.", outputPath)
+            print("The supplied ‘outputPath‘ already "
+                             "exists and cannot be overwritten. Now removing.", outputPath)
+            os.remove(outputPath)
+            print("Removed! ")
 
         # open the HDF5 database for writing and create two datasets:
         # one to store the images/features and another to store the
