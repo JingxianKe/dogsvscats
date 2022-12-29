@@ -46,9 +46,9 @@ trainGen = HDF5DatasetGenerator(config.TRAIN_HDF5, 128, aug=aug,
 valGen = HDF5DatasetGenerator(config.VAL_HDF5, 128,
 							  preprocessors=[sp, mp, iap], classes=2)
 
-# clean cache
-del config.TRAIN_HDF5, config.VAL_HDF5
-gc.collect()
+# # clean cache
+# del config.TRAIN_HDF5, config.VAL_HDF5
+# gc.collect()
 
 # if there is no specific model checkpoint supplied, then initialize the network and compile the model
 if args["model"] is None:
