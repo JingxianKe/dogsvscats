@@ -46,7 +46,7 @@ model = ResNet50(weights="imagenet", include_top=False)
 
 # initialize the HDF5 dataset writer, then store the class label
 # names in the dataset
-dataset = HDF5DatasetWriter((len(imagePaths), 2048),
+dataset = HDF5DatasetWriter((len(imagePaths), 2048 * 7 * 7),
                             args["output"], dataKey="features", bufSize=args["buffer_size"])
 dataset.storeClassLabels(le.classes_)
 
@@ -88,7 +88,7 @@ for i in np.arange(0, len(imagePaths), bs):
 
     # reshape the features so that each image is represented by
     # a flattened feature vector of the ‘MaxPooling2D‘ outputs
-    features = features.reshape((features.shape[0], 2048))
+    features = features.reshape((features.shape[0], 2048 * 7 * 7))
 
     # add the features and labels to our HDF5 dataset
     dataset.add(features, batchLabels)
