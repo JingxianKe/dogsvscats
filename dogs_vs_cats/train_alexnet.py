@@ -27,7 +27,7 @@ ap.add_argument("-m", "--model", type=str,
 args = vars(ap.parse_args())
 
 # construct the training image generator for data augmentation
-aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15,
+aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15, rescale=1./255,
 						 width_shift_range=0.2, height_shift_range=0.2, shear_range=0.15,
 						 horizontal_flip=True, fill_mode="nearest")
 
