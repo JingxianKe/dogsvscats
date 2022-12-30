@@ -53,7 +53,7 @@ valGen = HDF5DatasetGenerator(config.VAL_HDF5, 64,
 # if there is no specific model checkpoint supplied, then initialize the network and compile the model
 if args["model"] is None:
 	print("[INFO] compiling model...")
-	opt = Adam(lr=1e-3)
+	opt = Adam(lr=5e-4)
 	model = AlexNet.build(width=227, height=227, depth=3,
 						  classes=2, reg=0.0002)
 	model.compile(loss="binary_crossentropy", optimizer=opt,
