@@ -76,7 +76,7 @@ model.fit_generator(
 	validation_data=valGen.generator(),
 	validation_steps=valGen.numImages // 64,
 	epochs=75,
-	max_queue_size=16,
+	max_queue_size=64 * 2,
 	callbacks=callbacks, verbose=1)
 
 # save the model to file
